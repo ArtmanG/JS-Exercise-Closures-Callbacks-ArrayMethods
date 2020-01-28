@@ -73,6 +73,7 @@ function processLength(list, callback) {
 
 // we have two arguments (stringList, callback)
 // we need to return the last item of a list where we can use .length-1
+// we are looking at the (stringList then the last position of the list itself [stringList.length-1])
 
 function processLastItem(stringList, callback) {
   return callback(stringList[stringList.length-1]);
@@ -95,8 +96,17 @@ function processLastItem(stringList, callback) {
  * [2] Invoking `processSum` passing `[]` and `(num) => num + 1000`,
  * should return 1000.
 */
-function processSum(/* CODE HERE */) {
-  /* CODE HERE */
+
+// we have two arguments (numberList, callback)
+// we need to return the callback which adds all the numbers on the list.
+// we take the callback (pass in numberList[an array].reduce is used for sums (accumulator, and item)
+// then return the accumulation + the next item
+// make sure to start a 0 here }, 0));
+
+function processSum(numberList, callback) {
+  return callback(numberList.reduce(function(accumulator, item){
+    return accumulator + item;
+  }, 0));
 }
 
 /**

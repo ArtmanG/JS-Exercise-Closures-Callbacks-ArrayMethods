@@ -99,9 +99,9 @@ function processLastItem(stringList, callback) {
 
 // we have two arguments (numberList, callback)
 // we need to return the callback which adds all the numbers on the list.
-// we take the callback (pass in numberList[an array].reduce is used for sums (accumulator, and item)
+// we take the callback (pass in numberList[an array].reduce which is used for sums and uses (accumulator, and item)
 // then return the accumulation + the next item
-// make sure to start a 0 here }, 0));
+// make sure to start a 0 here by using --> }, 0));
 
 function processSum(numberList, callback) {
   return callback(numberList.reduce(function(accumulator, item){
@@ -127,8 +127,24 @@ function processSum(numberList, callback) {
  * [2] Invoking `processProduct` passing 25 and 0 and `(num) => num + 1000`,
  * should return 1000.
 */
-function processProduct(/* CODE HERE */) {
-  /* CODE HERE */
+
+// we have three arguments (num1, num2, callback(num))
+// the callback is (num1 * num2)
+//
+//
+//
+
+
+//I'm getting errors on these functions but it is still passing the test
+// function processProduct(num1, num2, callback) {
+//   return callback(num, {
+//     let num = num1 * num2;
+//   });
+// }
+
+function processProduct(num1, num2, callback) {
+  let num = num1 * num2;
+  return callback(num);
 }
 
 /**
@@ -151,8 +167,14 @@ function processProduct(/* CODE HERE */) {
  * "lady gaga" and `['foo', 'bar']` and `(bool) => bool ? 'nice!' : 'sad'`,
  * should return "sad".
 */
-function processContains(/* CODE HERE */) {
-  /* CODE HERE */
+
+// we got three arguments item, list[], and callback()
+// 
+//
+//
+//
+function processContains(item, list, callback) {
+  return callback(list.includes(item));
 }
 
 /**

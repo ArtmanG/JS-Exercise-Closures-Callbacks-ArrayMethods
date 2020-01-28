@@ -173,6 +173,8 @@ function processProduct(num1, num2, callback) {
 //
 //
 //
+//
+
 function processContains(item, list, callback) {
   return callback(list.includes(item));
 }
@@ -218,6 +220,13 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
+
+//
+//
+//
+//
+//
+
 function getFullNames(runners) {
   let runnersNames = [];
   runners.forEach((item) => {
@@ -238,6 +247,14 @@ function getFullNames(runners) {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
+
+//
+//
+//
+//
+//
+//
+
 function firstNamesAllCaps(runners) {
   let namesAllCaps = runners.map(function(item) {
     return item.first_name.toUpperCase();
@@ -258,8 +275,12 @@ function firstNamesAllCaps(runners) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
-  /* CODE HERE */
+
+function getRunnersByTShirtSize(runners, tShirtSize) {
+  let onlyThisSize = runners.filter(function(item){
+      return item.shirt_size === tShirtSize;
+  }); 
+  return onlyThisSize;
 }
 
 /**
@@ -272,8 +293,18 @@ function getRunnersByTShirtSize(/* CODE HERE */) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+
+//
+//
+//
+//
+//
+
+function tallyUpDonations(runners) {
+  let totalDonations = runners.reduce(function(accumulator, item){
+    return accumulator + item.donation;
+  }, 0);
+  return totalDonations;
 }
 
 /////////////// CLOSURES ///////////////
@@ -295,8 +326,9 @@ function tallyUpDonations(/* CODE HERE */) {
 function counterMaker() {
   // BROKEN CODE STARTS
   const count = 0;
-  function counter() {
-    ++count
+  return function() {
+    ++count;
+    return count;
   }
   // BROKEN CODE ENDS
 }

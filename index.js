@@ -358,11 +358,24 @@ function counterMaker() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
-  let count = 0;
+
+//
+//
+//
+//
+//
+
+function counterMakerWithLimit() {
+  let count = -1;
+  let max = 3;
   return function counter() {
-    return count++;
-  }
+    if (count === max){
+      count = 0;
+    } else {
+      count++;
+    };
+    return count;
+  };
 }
 
 /////////////// END OF CHALLENGE ///////////////

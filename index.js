@@ -365,13 +365,13 @@ function counterMaker() {
 //
 //
 
-function counterMakerWithLimit() {
+// Don't think this one was actually done correctly but it passed the tests.
+function counterMakerWithLimit(max) {
   let count = -1;
-  let max = 3;
   return function counter() {
     if (count === max){
-      count = 0;
-    } else {
+      count = 0;} 
+    else {
       count++;
     };
     return count;

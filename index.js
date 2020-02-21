@@ -48,8 +48,12 @@ function processFirstItem(stringList, callback) {
  * [2] Invoking `processLength` passing `[]` and `(num) => "There are " + num`,
  * should return "There are 0".
 */
-function processLength(/* CODE HERE */) {
-  /* CODE HERE */
+
+// processLength takes two arguments (list , callback)
+// return with the callback(list.length)
+
+function processLength(list, callback) {
+  return callback(list.length);
 }
 
 /**
@@ -66,8 +70,13 @@ function processLength(/* CODE HERE */) {
  * Invoking `processLastItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'barbar'.
 */
-function processLastItem(/* CODE HERE */) {
-  /* CODE HERE */
+
+// we have two arguments (stringList, callback)
+// we need to return the last item of a list where we can use .length-1
+// we are looking at the (stringList then the last position of the list itself [stringList.length-1])
+
+function processLastItem(stringList, callback) {
+  return callback(stringList[stringList.length-1]);
 }
 
 /**
@@ -87,8 +96,17 @@ function processLastItem(/* CODE HERE */) {
  * [2] Invoking `processSum` passing `[]` and `(num) => num + 1000`,
  * should return 1000.
 */
-function processSum(/* CODE HERE */) {
-  /* CODE HERE */
+
+// we have two arguments (numberList, callback)
+// we need to return the callback which adds all the numbers on the list.
+// we take the callback (pass in numberList[an array].reduce which is used for sums and uses (accumulator, and item)
+// then return the accumulation + the next item
+// make sure to start a 0 here by using --> }, 0));
+
+function processSum(numberList, callback) {
+  return callback(numberList.reduce(function(accumulator, item){
+    return accumulator + item;
+  }, 0));
 }
 
 /**
@@ -109,8 +127,24 @@ function processSum(/* CODE HERE */) {
  * [2] Invoking `processProduct` passing 25 and 0 and `(num) => num + 1000`,
  * should return 1000.
 */
-function processProduct(/* CODE HERE */) {
-  /* CODE HERE */
+
+// we have three arguments (num1, num2, callback(num))
+// the callback is (num1 * num2)
+//
+//
+//
+
+
+//I'm getting errors on these functions but it is still passing the test
+// function processProduct(num1, num2, callback) {
+//   return callback(num, {
+//     let num = num1 * num2;
+//   });
+// }
+
+function processProduct(num1, num2, callback) {
+  let num = num1 * num2;
+  return callback(num);
 }
 
 /**
@@ -133,8 +167,16 @@ function processProduct(/* CODE HERE */) {
  * "lady gaga" and `['foo', 'bar']` and `(bool) => bool ? 'nice!' : 'sad'`,
  * should return "sad".
 */
-function processContains(/* CODE HERE */) {
-  /* CODE HERE */
+
+// we got three arguments item, list[], and callback()
+// 
+//
+//
+//
+//
+
+function processContains(item, list, callback) {
+  return callback(list.includes(item));
 }
 
 /**
@@ -178,8 +220,19 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
-  /* CODE HERE */
+
+//
+//
+//
+//
+//
+
+function getFullNames(runners) {
+  let runnersNames = [];
+  runners.forEach((item) => {
+    return runnersNames.push(`${item.last_name}, ${item.first_name}`)
+  });
+  return runnersNames;
 }
 
 /**
@@ -194,8 +247,19 @@ function getFullNames(/* CODE HERE */) {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps(/* CODE HERE */) {
-  /* CODE HERE */
+
+//
+//
+//
+//
+//
+//
+
+function firstNamesAllCaps(runners) {
+  let namesAllCaps = runners.map(function(item) {
+    return item.first_name.toUpperCase();
+  });
+  return namesAllCaps;
 }
 
 /**
@@ -211,8 +275,18 @@ function firstNamesAllCaps(/* CODE HERE */) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
-  /* CODE HERE */
+
+//
+//
+//
+//
+//
+
+function getRunnersByTShirtSize(runners, tShirtSize) {
+  let onlyThisSize = runners.filter(function(item){
+      return item.shirt_size === tShirtSize;
+  }); 
+  return onlyThisSize;
 }
 
 /**
@@ -225,8 +299,11 @@ function getRunnersByTShirtSize(/* CODE HERE */) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+function tallyUpDonations(runners) {
+  let totalDonations = runners.reduce(function(accumulator, item){
+    return accumulator + item.donation;
+  }, 0);
+  return totalDonations;
 }
 
 /////////////// CLOSURES ///////////////
@@ -245,11 +322,18 @@ function tallyUpDonations(/* CODE HERE */) {
  * counter() // should return 2
  * etc
 */
+
+// 
+//
+//
+//
+//
+
 function counterMaker() {
   // BROKEN CODE STARTS
-  const count = 0;
-  function counter() {
-    ++count
+  let count = 0;
+  return function counter() {
+    return count++;
   }
   // BROKEN CODE ENDS
 }
@@ -274,8 +358,24 @@ function counterMaker() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
-  /* CODE HERE */
+
+//
+//
+//
+//
+//
+
+// Don't think this one was actually done correctly but it passed the tests.
+function counterMakerWithLimit(max) {
+  let count = -1;
+  return function counter() {
+    if (count === max){
+      count = 0;} 
+    else {
+      count++;
+    };
+    return count;
+  };
 }
 
 /////////////// END OF CHALLENGE ///////////////
